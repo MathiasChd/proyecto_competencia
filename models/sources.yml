@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw_bcp
+    database: airbyte_curso
+    schema: raw_bcp
+    tables:
+      - name: raw_eeff
+      - name: raw_cartera
+      - name: raw_sector
+      - name: raw_actividad

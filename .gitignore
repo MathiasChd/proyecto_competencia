@@ -1,0 +1,20 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+# Credenciales — IMPORTANTE
+profiles.yml
+*.env
+.env
+
+# Archivos pesados
+*.xlsm
+*.xlsx
+Boletin_Procesado.xlsx

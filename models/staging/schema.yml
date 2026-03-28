@@ -1,0 +1,95 @@
+version: 2
+
+models:
+  - name: stg_bcp__sector
+    description: "Créditos por sector económico por banco y moneda - BCP"
+    columns:
+      - name: moneda
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['MN', 'ME']
+      - name: banco
+        tests:
+          - not_null
+      - name: sector
+        tests:
+          - not_null
+      - name: credito_millones
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 99999999
+          - dbt_expectations.expect_column_mean_to_be_between:
+              min_value: 0
+              max_value: 9999999
+
+  - name: stg_bcp__actividad
+    description: "Créditos por actividad económica por banco y moneda - BCP"
+    columns:
+      - name: moneda
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['MN', 'ME']
+      - name: banco
+        tests:
+          - not_null
+      - name: credito_millones
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 99999999
+
+  - name: stg_bcp__cartera
+    description: "Cartera de créditos por banco y moneda - BCP"
+    columns:
+      - name: moneda
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['MN', 'ME']
+      - name: monto_millones
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 99999999
+
+  - name: stg_bcp__eeff
+    description: "Estados financieros por banco y moneda - BCP"
+    columns:
+      - name: moneda
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['MN', 'ME']
+      - name: monto_millones
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 99999999
+
+  - name: obt_creditos_banco
+    description: "One Big Table con créditos por sector, banco, moneda y fecha"
+    tests:
+      - dbt_expectations.expect_table_row_count_to_be_between:
+          min_value: 100
+          max_value: 9999999
+    columns:
+      - name: moneda
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['MN', 'ME']
+      - name: banco
+        tests:
+          - not_null
+      - name: credito_sector
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 99999999
