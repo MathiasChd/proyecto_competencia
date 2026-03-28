@@ -174,9 +174,9 @@ Done. PASS=25 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=25
 ---
 
 ## Integrantes
-
-- Mathias Chávez
-- (completar)
+- Maria del Pilar Ruiz Diaz
+- Tanya Godoy
+- Mathias Chaparro
 
 ---
 
