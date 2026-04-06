@@ -41,9 +41,11 @@ https://www.bcp.gov.py/boletines-estadisticos-i398
 ## Estructura del proyecto
 ```
 proyecto_bcp/
+├── flow_bcp.py                 # Orquestador Prefect
 ├── cargar_motherduck.py        # Script EL: carga raw data a MotherDuck
 ├── packages.yml                # Dependencias dbt
 ├── dbt_project.yml             # Configuración del proyecto dbt
+├── profiles.yml                # Configuración de conexión a la base de datos (DuckDB/MotherDuck)
 ├── README.md
 └── models/
     ├── sources.yml             # Definición de fuentes raw
