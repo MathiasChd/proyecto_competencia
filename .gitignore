@@ -16,5 +16,5 @@ profiles.yml
 
 # Archivos pesados
 *.xlsm
-*.xlsx
-Boletin_Procesado.xlsx
+*.xls
+*.csv
