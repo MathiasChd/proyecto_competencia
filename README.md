@@ -1,8 +1,3 @@
-
-# Project Title
-
-A brief description of what this project does and who it's for
-
 # Pipeline BCP — Proyecto Final Integrador
 ## Maestría en Inteligencia Artificial y Análisis de datos — Ingeniería de Datos
 ### Facultad Politécnica, Universidad Nacional de Asunción
