@@ -1,5 +1,10 @@
+
+# Project Title
+
+A brief description of what this project does and who it's for
+
 # Pipeline BCP — Proyecto Final Integrador
-## Maestría en Inteligencia Artificial — Ingeniería de Datos (MIA 03)
+## Maestría en Inteligencia Artificial y Análisis de datos — Ingeniería de Datos
 ### Facultad Politécnica, Universidad Nacional de Asunción
 
 ---
@@ -21,7 +26,7 @@ bancario paraguayo.
 | Transformación | dbt-duckdb 1.10.1 | Modelos staging, intermedio y OBT |
 | Base de datos | DuckDB / MotherDuck | Schema `raw_bcp` (raw) → `main_bcp` (transformado) |
 | Calidad de datos | dbt-expectations | 25 tests — PASS=25 WARN=0 ERROR=0 |
-| Orquestación | Prefect | (en desarrollo) |
+Orquestación | Prefect 3.0 | Pipeline automatizado con lógica de reintentos y observabilidad (`flow_bcp.py`) |
 | Dashboard | Metabase | (en desarrollo) |
 
 ---
@@ -117,6 +122,11 @@ source venv/bin/activate
 # Instalar dependencias
 pip install dbt-duckdb duckdb pandas openpyxl
 
+#Instalar librerias 
+pip install pandas openpyxl duckdb dbt-duckdb
+pip install prefect
+pip install "griffe<1.0.0"  # Fix requerido para evitar conflictos de importación en el server de Prefect
+
 # Configurar token de MotherDuck en profiles.yml
 # Crear ~/.dbt/profiles.yml con el siguiente contenido:
 ```
@@ -153,6 +163,26 @@ Done. PASS=25 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=25
 
 ---
 
+### Ejecutar el pipeline (Orquestado)
+
+El proyecto utiliza **Prefect** para garantizar que las tareas se ejecuten en el orden correcto y manejar fallos automáticamente.
+
+#### 1. Iniciar el servidor (en una terminal):
+```bash
+prefect server start
+```
+#### 2. Ejecutar el codigo (en otra terminal):
+```bash
+python3 flow_bcp.py
+```
+#### 3.Monitorear la ejecución en: http://localhost:4200
+
+```markdown
+Resultado esperado:
+Done. PASS=25 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=25
+```
+--- 
+
 ## Tests de calidad
 
 | Test | Modelos | Tipo |
@@ -184,7 +214,6 @@ Done. PASS=25 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=25
 
 ## Pendiente para entrega final
 
-- [ ] Prefect flow de orquestación
 - [ ] Dashboard Metabase (5+ visualizaciones)
 - [ ] Análisis cruzado MN vs ME
 - [ ] Informe técnico en formato reporte
