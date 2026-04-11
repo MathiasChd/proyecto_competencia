@@ -189,6 +189,12 @@ Done. PASS=25 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=25
 | expect_table_row_count_to_be_between | obt_creditos_banco | dbt-expectations |
 
 ---
+## Visualizaciones en Metabase
+
+- Descargar el repositorio.
+- Ejecutar java -jar metabase.jar.
+- Entrar a localhost:3000.
+- Ir a Configuración de base de datos y poner tu propio MotherDuck Token en el campo Database Path.
 
 ## Análisis posibles (cruce MN vs ME)
 
