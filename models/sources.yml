@@ -9,3 +9,4 @@ sources:
       - name: raw_cartera
       - name: raw_sector
       - name: raw_actividad
+      - name: raw_tc

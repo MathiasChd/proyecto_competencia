@@ -55,6 +55,7 @@ proyecto_bcp/
     │   ├── stg_bcp__actividad.sql
     │   ├── stg_bcp__cartera.sql
     │   └── stg_bcp__eeff.sql
+    |   └── stg_bcp__tc.sql
     └── marts/
         └── obt_creditos_banco.sql
 ```
@@ -74,9 +75,9 @@ Se optó por OBT en lugar de modelo dimensional Kimball por las siguientes razon
 
 ### Lineage
 ```
-BCP Boletín MN (.xlsm)  ─┐
-                          ├─► cargar_motherduck.py ─► raw_bcp.raw_* ─► stg_bcp__* ─► obt_creditos_banco
-BCP Boletín ME (.xlsm)  ─┘
+BCP Boletin_Procesado (.xlsm)  ─┐
+                                ├─► cargar_motherduck.py ─► raw_bcp.raw_* ─► stg_bcp__* ─► obt_creditos_banco
+BCP tc_bcp (.xlsm)             ─┘
 ```
 
 ### Tablas en MotherDuck
@@ -87,10 +88,12 @@ BCP Boletín ME (.xlsm)  ─┘
 | raw_bcp | raw_cartera | Cartera de créditos raw |
 | raw_bcp | raw_sector | Créditos por sector raw |
 | raw_bcp | raw_actividad | Créditos por actividad raw |
+| raw_bcp | raw_tc | Historico de cotizacion mensual por cierre raw |
 | main_bcp | stg_bcp__eeff | EEFF limpio y unpivoteado |
 | main_bcp | stg_bcp__cartera | Cartera limpia y unpivoteada |
 | main_bcp | stg_bcp__sector | Sector limpio y unpivoteado |
 | main_bcp | stg_bcp__actividad | Actividad limpia y unpivoteada |
+| main_bcp | stg_bcp__tc | Cotizacion mensual, transformacion de fecha a primer dia del mes |
 | main_bcp | obt_creditos_banco | One Big Table para análisis |
 
 ---

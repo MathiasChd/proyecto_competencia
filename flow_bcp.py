@@ -13,8 +13,8 @@ def task_cargar_motherduck():
     logger = get_run_logger()
     logger.info("Iniciando carga de boletines BCP a MotherDuck...")
     result = subprocess.run(
-        ["python3", SCRIPT_CARGA],
-        capture_output=True, text=True, cwd=PROJECT_DIR
+        ["python", SCRIPT_CARGA],
+        capture_output=True, text=True, cwd=PROJECT_DIR, shell=True
     )
     if result.returncode != 0:
         raise Exception(f"Error en carga:\n{result.stderr}")
